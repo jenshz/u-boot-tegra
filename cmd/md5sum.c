@@ -14,6 +14,7 @@
 #include <mapmem.h>
 #include <u-boot/md5.h>
 #include <asm/io.h>
+#include "../lib/md5.c"
 
 /*
  * Store the resulting sum to an address or variable

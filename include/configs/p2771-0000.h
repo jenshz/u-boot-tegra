@@ -23,6 +23,10 @@
 	func(PXE, pxe, na) \
 	func(DHCP, dhcp, na)
 
+/* Custom Commands */
+#define CONFIG_CMD_TMR
+#define CONFIG_CMD_MD5SUM
+
 #define BOARD_EXTRA_ENV_SETTINGS \
 	"calculated_vars=kernel_addr_r fdt_addr_r scriptaddr pxefile_addr_r " \
 		"ramdisk_addr_r\0" \

@@ -3,6 +3,15 @@
 # (C) Copyright 2000 - 2013
 # Wolfgang Denk, DENX Software Engineering, wd@denx.de.
 
+TMR Instructions:
+=================
+
+The TMR code is written in common/tmr.c and implemented in common/main.c (n main_loop()).
+
+Before flashing, some modifications must be made on the TX2i filesystem. Make 3 copies of the boot image (stored as /boot/Image, /boot/Image1, /boot/Image2), and store an md5 hash for each (/boot/hash, /boot/hash1, /boot/hash2). The filesize of the image is hard-coded into the TMR code (0x34048008 bytes, in hex), and this should be changed on common/tmr.c:68 if using an image of a different size.
+
+To flash the kernel, follow the "U-Boot Customization" instructions in the L4T docs, particularly the "Flashing U-Boot Only" section.
+
 Summary:
 ========
 

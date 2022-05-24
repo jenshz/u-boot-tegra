@@ -402,7 +402,7 @@ static int abortboot_single_key(int bootdelay)
 	return abort;
 }
 
-static int abortboot(int bootdelay)
+int abortboot(int bootdelay)
 {
 	int abort = 0;
 
