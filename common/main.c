@@ -71,7 +71,7 @@ void main_loop(void)
 	s = bootdelay_process();
 	if (cli_process_fdt(&s))
 		cli_secure_boot_cmd(s);
-    printf("meta-sol version 2.0\n"); // kinda arbitrary
+    printf("meta-sol ref YOCTO_SOL_REF\n");
     fs_set_blk_dev("mmc", "0:1", FS_TYPE_EXT);
 
     ulong file_offset[8] = {YOCTO_INFO_FILE_OFFSET, YOCTO_INFO_HASH_OFFSET,
