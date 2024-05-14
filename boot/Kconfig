@@ -1008,7 +1008,7 @@ config BOOTCOMMAND
 	  This is the string of commands that will be used as bootcmd and if
 	  AUTOBOOT is set, automatically run.
 
-config CONFIG_CMD_TMR
+config CMD_TMR
 	bool "Enable Triple Module Redundancy"
 	help
 	  This enables support for triple module redundancy during boot time.
