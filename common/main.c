@@ -24,11 +24,6 @@
 
 DECLARE_GLOBAL_DATA_PTR;
 
-/*
- * Board-specific Platform code can reimplement show_boot_progress () if needed
- */
-__weak void show_boot_progress(int val) {}
-
 static void run_preboot_environment_command(void)
 {
 	char *p;
@@ -134,20 +129,20 @@ void main_loop(void)
     // TODO: See if we can find a way to make use of bootargs
     //setenv("bootargs", safe);
     char bootargs[CONFIG_SYS_CBSIZE];
-    cli_simple_process_macros("${cbootargs} root=/dev/ram0 rw rootwait ${bootargs}", bootargs);
-    setenv("bootargs", bootargs);
+    cli_simple_process_macros("${cbootargs} root=/dev/ram0 rw rootwait ${bootargs}", bootargs, sizeof(bootargs));
+    env_set("bootargs", bootargs);
 
     if(!abortboot(5)) {
         char initrd_loc[YOCTO_INFO_BYTES*2] = "";
-        sprintf(initrd_loc, "%x:%x", outputs[3], sizes[3]);
+        sprintf(initrd_loc, "%lx:%lx", outputs[3], sizes[3]);
 		char image_loc[YOCTO_INFO_BYTES] = "";
-        sprintf(image_loc, "%x", outputs[1]);
+        sprintf(image_loc, "%lx", outputs[1]);
         char dtb_loc[YOCTO_INFO_BYTES] = "";
-        sprintf(dtb_loc, "%x", outputs[2]);
+        sprintf(dtb_loc, "%lx", outputs[2]);
         char *argv[4] = {"booti", image_loc,
                          initrd_loc,
                          dtb_loc};
-        cmd_tbl_t *bcmd = find_cmd("booti");
+        struct cmd_tbl *bcmd = find_cmd("booti");
         do_booti(bcmd, 0, 4, argv);
     } else {
         cli_loop();
