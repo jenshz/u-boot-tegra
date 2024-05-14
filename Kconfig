@@ -20,11 +20,6 @@ config BROKEN
 	  This option cannot be enabled. It is used as dependency
 	  for broken and incomplete features.
 
-config CONFIG_CMD_TMR
-	bool "Enable Triple Module Redundancy"
-	help
-	  This enables support for triple module redundancy during boot time.
-
 config DEPRECATED
 	bool
 	help
